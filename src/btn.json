@@ -1,0 +1,24 @@
+{
+    "btnList":[
+        {
+            "id":1,
+            "name":"按钮1",
+            "icon":"$(star)",
+            "action":"console.log(1)",
+            "type":"common"
+        },
+        {
+            "id":1,
+            "name":"按钮2",
+            "icon":"$(star)",
+            "action":"console.log(1)",
+            "type":"dialog",
+            "dialog":{
+                "title":"标题",
+                "data":[{"label":"姓名","key":"name","value":"larry"}],
+                "width":500,
+                "height":500
+            }
+        }
+    ]
+}
