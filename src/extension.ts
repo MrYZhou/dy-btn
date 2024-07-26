@@ -1,13 +1,16 @@
 
 import * as vscode from 'vscode';
 import * as tool from './tool';
-import * as data from './btn.json';
 
 let actionMap = new Map();
+
+type Btn = { name: string; icon: string; id: string; action: string; data: any[] };
 function initBtn() {
-    // todo 从配置读取
+    // 从配置读取
+    let config = vscode.workspace.getConfiguration('dy-btn', vscode.ConfigurationTarget.Global as any);
+    
     let myButton;
-    data.btnList.forEach(item => {
+    config.list.forEach((item: Btn) => {
         myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
         myButton.tooltip = item.name;
         myButton.text = `${item.icon}`;
@@ -34,9 +37,9 @@ export async function activate(context: vscode.ExtensionContext) {
         const fn = `async function dy(data, tool){${button.action}}`;
         const func = new Function('data', 'tool', fn + '\ndy(data, tool);');
 
+        let data: any = tool.getConfig();
         if (button?.data) {
             // 收集参数
-            let data:any = {};
             for (let index = 0; index < button?.data.length; index++) {
                 let item = button?.data[index];
                 let input = await vscode.window.showInputBox({
@@ -51,5 +54,4 @@ export async function activate(context: vscode.ExtensionContext) {
         func(data, tool);
     }));
 }
-
 export function deactivate() { }
