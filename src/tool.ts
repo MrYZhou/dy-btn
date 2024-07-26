@@ -1,11 +1,6 @@
 import { exec } from 'child_process';
 import * as vscode from 'vscode';
-/**
- * Executes a command in a child process and logs its output.
- * @param command The command to execute.
- * @param sourceDir The directory to execute the command in. Defaults to the current working directory.
- * @returns A promise that resolves to true if the command was successful, false otherwise.
- */
+
 const execFn = (command: string, sourceDir: string = './'): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     const options = {
