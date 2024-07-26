@@ -32,6 +32,7 @@ export async function activate(context: vscode.ExtensionContext) {
         let button = actionMap.get(key);
         // 执行函数的逻辑
         const fn = `async function dy(data, tool){${button.action}}`;
+        const func = new Function('data', 'tool', fn + '\ndy(data, tool);');
 
         if (button?.data) {
             // 收集参数
@@ -47,7 +48,6 @@ export async function activate(context: vscode.ExtensionContext) {
                 }
             }
         }
-        const func = new Function('data', 'tool', fn + '\ndy(data, tool);');
         func(data, tool);
     }));
 }
