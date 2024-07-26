@@ -16,8 +16,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "dy-btn.helloWorld",
-        "title": "Hello World"
+        "command": "dy-btn.action",
+        "title": "add dynamic button"
       }
     ]
   },

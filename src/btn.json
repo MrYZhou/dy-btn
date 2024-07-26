@@ -3,14 +3,14 @@
         {
             "id":1,
             "name":"按钮1",
-            "icon":"$(star)",
-            "action":"console.log(1)",
+            "icon":"$(debug-start)",
+            "action":"tool.showMessage('123');",
             "type":"common"
         },
         {
-            "id":1,
+            "id":2,
             "name":"按钮2",
-            "icon":"$(star)",
+            "icon":"$(arrow-down)",
             "action":"console.log(1)",
             "type":"dialog",
             "dialog":{
