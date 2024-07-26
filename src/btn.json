@@ -11,14 +11,9 @@
             "id":2,
             "name":"按钮2",
             "icon":"$(arrow-down)",
-            "action":"console.log(1)",
-            "type":"dialog",
-            "dialog":{
-                "title":"标题",
-                "data":[{"label":"姓名","key":"name","value":"larry"}],
-                "width":500,
-                "height":500
-            }
+            "action":"console.log(data.path)",
+            "type":"prompt",
+            "data":[{"label":"执行脚本","key":"path","placeholder":"请输入脚本路径"}]
         }
     ]
 }
