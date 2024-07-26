@@ -19,7 +19,65 @@
         "command": "dy-btn.action",
         "title": "add dynamic button"
       }
-    ]
+    ],
+    "configuration": {
+        "type": "object",
+        "title": "Dynamic Button Configuration",
+        "properties": {
+            "dy-btn": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "description": "The ID of the button."
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the button."
+                        },
+                        "icon": {
+                            "type": "string",
+                            "markdownDescription": "The icon of the button.[all icon](https://code.visualstudio.com/api/references/icons-in-labels#icon-listing)"
+                        },
+                        "action": {
+                            "type": "string",
+                            "description": "The action to be executed when the button is clicked."
+                        },
+                        "type": {
+                            "type": "string",
+                            "description": "The type of the button (common or prompt)."
+                        },
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "label": {
+                                        "type": "string",
+                                        "description": "Label for the input."
+                                    },
+                                    "key": {
+                                        "type": "string",
+                                        "description": "Key for the input data."
+                                    },
+                                    "placeholder": {
+                                        "type": "string",
+                                        "description": "Placeholder text for the input field."
+                                    }
+                                },
+                                "required": ["label", "key", "placeholder"]
+                            },
+                            "description": "Data for the prompt button."
+                        }
+                    },
+                    "required": ["id", "name", "icon", "action", "type"]
+                },
+                "description": "List of dynamic buttons configuration."
+            }
+        }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
