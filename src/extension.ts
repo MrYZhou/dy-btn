@@ -2,10 +2,11 @@
 import * as vscode from 'vscode';
 import * as tool from './tool';
 let btnInfo = {
-    action: "+function hello(){console.log(123)}",
-    action1:"node 2.ts",
+    action: "tool.showMessage('Hello World!');",
+    action2:"await tool.execFn('node 全路径地址')",
     data: { key: 'name' }
 };
+
 
 function initBtn(){
 
@@ -23,8 +24,8 @@ export function activate(context: vscode.ExtensionContext) {
 
         // 执行函数的逻辑
         const fn = `
-        function dy(data, tool){
-            tool.showMessage('Hello World!');
+        async function dy(data, tool){
+            ${btnInfo.action}
         }
         `;
         const func = new Function('data', 'tool', fn + '\ndy(data, tool);');
