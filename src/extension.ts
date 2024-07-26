@@ -27,27 +27,27 @@ export async function activate(context: vscode.ExtensionContext) {
     // 注册按钮事件
     context.subscriptions.push(vscode.commands.registerCommand('dy-btn.action', async (key) => {
         if (!key) {
-            return  tool.showMessage('请前往配置文件配置');
+            return tool.showMessage('请前往配置文件配置');
         }
         let button = actionMap.get(key);
         // 执行函数的逻辑
         const fn = `async function dy(data, tool){${button.action}}`;
-        // 如果是对话框
-        if (button?.dialog) {
-            // todo 收集对话框参数
-            for (let index = 1; index <= 2; index++) {
+
+        if (button?.data) {
+            // 收集参数
+            let data:any = {};
+            for (let index = 0; index < button?.data.length; index++) {
+                let item = button?.data[index];
                 let input = await vscode.window.showInputBox({
-                    prompt: '请输入您的名字' + index,
-                    placeHolder: '例如: John Doe'
+                    prompt: item.label,
+                    placeHolder: item.placeHolder
                 });
                 if (input) {
-                    // 用户输入了数据
-                    vscode.window.showInformationMessage(`Hello, ${input}!`);
+                    data[item.key] = input;
                 }
             }
         }
         const func = new Function('data', 'tool', fn + '\ndy(data, tool);');
-        let data = button?.dialog?.data;
         func(data, tool);
     }));
 }
