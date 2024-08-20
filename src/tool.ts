@@ -7,8 +7,8 @@ import * as vscode from 'vscode';
  * @param command 命令
  * @param sourceDir 执行位置
  */
-const  run = (command: string, sourceDir: string = '') => {
-    if(!sourceDir) {
+const run = (command: string, sourceDir: string = '') => {
+    if (!sourceDir) {
         sourceDir = getConfig().workspaceDir;
     }
     // 创建一个终端实例
@@ -27,7 +27,7 @@ const  run = (command: string, sourceDir: string = '') => {
  * @param sourceDir 执行位置
  * @returns 
  */
-const exec = (command: string, sourceDir: string = './'): Promise<boolean|string> => {
+const exec = (command: string, sourceDir: string = './'): Promise<boolean | string> => {
     return new Promise((resolve, reject) => {
         const options = {
             cwd: sourceDir,
@@ -83,7 +83,7 @@ const getConfig = () => {
     const editor = vscode.window.activeTextEditor as vscode.TextEditor;
     const filePath = editor.document.uri.fsPath;
     let workspaceDir = vscode.workspace.workspaceFolders?.[0].uri.fsPath as string;
-    let config:Config = {
+    let config: Config = {
         currentDir: path.dirname(filePath),
         workspaceDir,
         focusFilePath: filePath
@@ -91,4 +91,7 @@ const getConfig = () => {
     return config;
 };
 
-export { exec, msg, getConfig ,run};
+let funcsName = ['exec', 'msg', 'getConfig', 'run']
+let funcs = [exec, msg, getConfig, run]
+
+export { funcsName, funcs, exec, msg, getConfig, run };
