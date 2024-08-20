@@ -68,7 +68,7 @@
                             "description": "Data for the prompt button."
                         }
                     },
-                    "required": ["icon", "action"]
+                    "required": ["id","icon", "action"]
                 },
                 "description": "List of dynamic buttons configuration."
             }
