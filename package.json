@@ -20,12 +20,6 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "dy-btn.action",
-        "title": "add dynamic button"
-      }
-    ],
     "configuration": {
         "type": "object",
         "title": "Dynamic Button Configuration",
@@ -95,9 +89,9 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "eslint": "^8.39.0",
-    "glob": "^8.1.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "eslint": "^9.9.0",
+    "glob": "^11.0.0",
     "mocha": "^10.2.0",
     "typescript": "^5.0.4",
     "@vscode/test-electron": "^2.2.0"

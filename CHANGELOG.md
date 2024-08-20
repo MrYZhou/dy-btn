@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "dy-btn" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+v1.24.81
+- 方法名缩短，方便编写
+- 带参数按钮的placeholder没有显示问题
+- 配置内容默认写入2种模式案例
+- 移除冗余的按钮事件

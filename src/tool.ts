@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { exec as execFn } from 'child_process';
 import path = require('path');
 import * as vscode from 'vscode';
 
@@ -7,7 +7,7 @@ import * as vscode from 'vscode';
  * @param command 命令
  * @param sourceDir 执行位置
  */
-const  runInTerminal = (command: string, sourceDir: string = '') => {
+const  run = (command: string, sourceDir: string = '') => {
     if(!sourceDir) {
         sourceDir = getConfig().workspaceDir;
     }
@@ -27,7 +27,7 @@ const  runInTerminal = (command: string, sourceDir: string = '') => {
  * @param sourceDir 执行位置
  * @returns 
  */
-const execFn = (command: string, sourceDir: string = './'): Promise<boolean> => {
+const exec = (command: string, sourceDir: string = './'): Promise<boolean|string> => {
     return new Promise((resolve, reject) => {
         const options = {
             cwd: sourceDir,
@@ -35,9 +35,11 @@ const execFn = (command: string, sourceDir: string = './'): Promise<boolean> => 
             maxBuffer: 2000 * 1024 * 1024, // 2 GB, which is still quite large but more reasonable
         };
 
-        const execInfo = exec(command, options);
+        let result = '';
+        const execInfo = execFn(command, options);
 
         execInfo?.stdout?.on('data', (data: Buffer | string) => {
+            result += data.toString();
             process.stdout.write(data.toString());
         });
 
@@ -47,7 +49,7 @@ const execFn = (command: string, sourceDir: string = './'): Promise<boolean> => 
 
         execInfo.on('close', (code: number) => {
             if (code === 0) {
-                resolve(true);
+                resolve(result);
             } else {
                 resolve(false);
             }
@@ -59,7 +61,7 @@ const execFn = (command: string, sourceDir: string = './'): Promise<boolean> => 
     });
 };
 
-const showMessage = (message: string) => {
+const msg = (message: string) => {
     vscode.window.showInformationMessage(message);
 };
 
@@ -89,4 +91,4 @@ const getConfig = () => {
     return config;
 };
 
-export { execFn, showMessage, getConfig ,runInTerminal};
+export { exec, msg, getConfig ,run};

@@ -28,10 +28,8 @@ export async function activate(context: vscode.ExtensionContext) {
     // 展示动态按钮
     initBtn();
     // 注册按钮事件
-    context.subscriptions.push(vscode.commands.registerCommand('dy-btn.action', async (key) => {
-        if (!key) {
-            return tool.showMessage('请前往配置文件配置');
-        }
+    context.subscriptions.push(vscode.commands.registerCommand('dy-btn.action', async (key: any) => {
+        if (!key) return
         let button = actionMap.get(key);
         // 执行函数的逻辑
         const fn = `async function dy(data, tool){${button.action}}`;
@@ -44,7 +42,7 @@ export async function activate(context: vscode.ExtensionContext) {
                 let item = button?.data[index];
                 let input = await vscode.window.showInputBox({
                     prompt: item.label,
-                    placeHolder: item.placeHolder
+                    placeholder: item.placeHolder
                 });
                 if (input) {
                     data[item.key] = input;
