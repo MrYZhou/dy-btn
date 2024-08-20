@@ -1,13 +1,13 @@
 
 import * as vscode from 'vscode';
-import { funcsName, funcs, getConfig } from "./tool";
+import { funcsName, funcs, getConfig, msg } from "./tool";
 
 let actionMap = new Map();
 
 type Btn = { name: string; icon: string; id: string; action: string; data: any[] };
 function initBtn() {
     // 从配置读取
-    let list = initConfig()
+    let list = initConfig();
     let myButton;
     list.forEach((item: Btn) => {
         myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
@@ -31,7 +31,7 @@ function initConfig() {
         }, vscode.ConfigurationTarget.Global);
         config = vscode.workspace.getConfiguration('dy-btn', vscode.ConfigurationTarget.Global as any);
     }
-    if (!config.list || config.list.length == 0) {
+    if (!config.list || config.list.length === 0) {
         let list = [{
             "id": 1,
             "name": "打开仓库",
@@ -45,9 +45,9 @@ function initConfig() {
             "data": [
                 { "label": "执行脚本", "key": "path", "placeholder": "请输入脚本路径" }
             ]
-        }]
+        }];
         config.update('list', list, vscode.ConfigurationTarget.Global);
-        return list
+        return list;
     }
     return config.list;
 
@@ -58,7 +58,9 @@ export async function activate(context: vscode.ExtensionContext) {
     initBtn();
     // 注册按钮事件
     context.subscriptions.push(vscode.commands.registerCommand('dy-btn.action', async (key: any) => {
-        if (!key) { return; };
+        if (!key) {
+            return;
+        };
         let button = actionMap.get(key);
         // 执行函数的逻辑
         let funcsStr = funcsName.join();

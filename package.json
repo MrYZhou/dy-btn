@@ -1,9 +1,8 @@
 {
   "name": "dy-btn",
-  "type": "module",
   "displayName": "dy-btn",
   "description": "动态按钮",
-  "version": "1.24.82",
+  "version": "1.24.84",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -21,6 +20,12 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "dy-btn.action",
+        "title": "add dynamic button"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "Dynamic Button Configuration",
@@ -85,10 +90,10 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
+    "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
