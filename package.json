@@ -1,10 +1,11 @@
 {
   "name": "dy-btn",
+  "type": "module",
   "displayName": "dy-btn",
   "description": "动态按钮",
-  "version": "1.24.81",
+  "version": "1.24.82",
   "engines": {
-    "vscode": "^1.91.0"
+    "vscode": "^1.92.0"
   },
   "categories": [
     "Other"
@@ -14,65 +15,73 @@
     "type": "git",
     "url": "https://github.com/MrYZhou/dy-btn.git"
   },
-  "icon":"favicon.ico",
+  "icon": "favicon.ico",
   "activationEvents": [
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-        "type": "object",
-        "title": "Dynamic Button Configuration",
-        "properties": {
-            "dy-btn.list": {
+      "type": "object",
+      "title": "Dynamic Button Configuration",
+      "properties": {
+        "dy-btn.list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "The ID of the button."
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the button."
+              },
+              "icon": {
+                "type": "string",
+                "markdownDescription": "The icon of the button.[all icon](https://code.visualstudio.com/api/references/icons-in-labels#icon-listing)"
+              },
+              "action": {
+                "type": "string",
+                "description": "The action to be executed when the button is clicked."
+              },
+              "data": {
                 "type": "array",
                 "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "integer",
-                            "description": "The ID of the button."
-                        },
-                        "name": {
-                            "type": "string",
-                            "description": "The name of the button."
-                        },
-                        "icon": {
-                            "type": "string",
-                            "markdownDescription": "The icon of the button.[all icon](https://code.visualstudio.com/api/references/icons-in-labels#icon-listing)"
-                        },
-                        "action": {
-                            "type": "string",
-                            "description": "The action to be executed when the button is clicked."
-                        },
-                        "data": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "label": {
-                                        "type": "string",
-                                        "description": "Label for the input."
-                                    },
-                                    "key": {
-                                        "type": "string",
-                                        "description": "Key for the input data."
-                                    },
-                                    "placeholder": {
-                                        "type": "string",
-                                        "description": "Placeholder text for the input field."
-                                    }
-                                },
-                                "required": ["label", "key", "placeholder"]
-                            },
-                            "description": "Data for the prompt button."
-                        }
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "description": "Label for the input."
                     },
-                    "required": ["id","icon", "action"]
+                    "key": {
+                      "type": "string",
+                      "description": "Key for the input data."
+                    },
+                    "placeholder": {
+                      "type": "string",
+                      "description": "Placeholder text for the input field."
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "key",
+                    "placeholder"
+                  ]
                 },
-                "description": "List of dynamic buttons configuration."
-            }
+                "description": "Data for the prompt button."
+              }
+            },
+            "required": [
+              "id",
+              "icon",
+              "action"
+            ]
+          },
+          "description": "List of dynamic buttons configuration."
         }
+      }
     }
   },
   "scripts": {
@@ -84,16 +93,16 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.91.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.92.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^8.2.0",
-    "eslint": "^9.9.0",
-    "glob": "^11.0.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^5.0.4",
-    "@vscode/test-electron": "^2.2.0"
+    "typescript": "^5.0.4"
   }
 }
