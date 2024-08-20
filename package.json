@@ -2,7 +2,7 @@
   "name": "dy-btn",
   "displayName": "dy-btn",
   "description": "动态按钮",
-  "version": "1.24.84",
+  "version": "1.24.85",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -20,12 +20,6 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "dy-btn.action",
-        "title": "add dynamic button"
-      }
-    ],
     "configuration": {
       "type": "object",
       "title": "Dynamic Button Configuration",
@@ -109,5 +103,8 @@
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "vsce": "^2.15.0"
   }
 }
