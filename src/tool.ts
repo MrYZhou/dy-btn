@@ -80,18 +80,25 @@ type Config = {
     focusFilePath: string;
 };
 const getConfig = () => {
-    const editor = vscode.window.activeTextEditor as vscode.TextEditor;
-    const filePath = editor.document.uri.fsPath;
+   
     let workspaceDir = vscode.workspace.workspaceFolders?.[0].uri.fsPath as string;
     let config: Config = {
-        currentDir: path.dirname(filePath),
         workspaceDir,
-        focusFilePath: filePath
+        currentDir:'',
+        focusFilePath:''
     };
+    try {
+        const editor = vscode.window.activeTextEditor as vscode.TextEditor;
+        const filePath = editor.document.uri.fsPath;
+        config.currentDir = path.dirname(filePath);
+        config.focusFilePath = filePath;
+    } catch (error) {
+       
+    }
     return config;
 };
 
-let funcsName = ['exec', 'msg', 'getConfig', 'run']
-let funcs = [exec, msg, getConfig, run]
+let funcsName = ['exec', 'msg', 'getConfig', 'run'];
+let funcs = [exec, msg, getConfig, run];
 
 export { funcsName, funcs, exec, msg, getConfig, run };
