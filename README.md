@@ -1,1 +1,3 @@
-dynamic create button with custom logic
+1.打开配置页面搜dy-btn配置
+2.编写需要的逻辑代码
+3.f1->重新加载窗口
